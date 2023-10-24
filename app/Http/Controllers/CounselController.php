@@ -21,6 +21,10 @@ use App\Mail\ContactStudent4;
 
 class CounselController extends Controller
 {
+    Public function showcalendar()
+    {
+        return view('counsel.calendar');
+    }
     public function __invoke()
     {
         $events = [];
@@ -37,31 +41,82 @@ class CounselController extends Controller
  
         return view('counsel.index', compact('events'));
     }
-
-    public function index(){
+    public function index(Request $request)
+{
+    if ($request->ajax()) {
+        $counselSchedules = Counsel::with(['student', 'guidance'])->get();
         $events = [];
-     
-        $appointments = Counsel::with(['student', 'guidance'])->get();
-     
-        foreach ($appointments as $appointment) {
+
+        foreach ($counselSchedules as $schedule) {
             $events[] = [
-                'title' => $appointment->student->fname . ' ' . $appointment->student->lname . ' (' . $appointment->guidance->fname . ' ' . $appointment->guidance->lname . ')',
-                'start' => $appointment->scheduled_date . ' ' . $appointment->start_time,
-                'end' => $appointment->scheduled_date . ' ' . $appointment->end_time,
+                'id' => $schedule->id,
+                'title' => $schedule->title,
+                'start' => $schedule->scheduled_date,
+                'end' => $schedule->scheduled_date,
             ];
         }
-        
-        $counsel = Counsel::with('student')->orderBy('id','DESC')->get();
-        return View::make('counsel.index', compact('counsel', 'events'));
+
+        return response()->json($events);
     }
+
+    return view('counsel.calendar');
+}
+
+    public function ajax(Request $request)
+    {
+        switch ($request->type) {
+            case 'add':
+                $event = Event::create([
+                    'title' => $request->title,
+                    'start' => $request->start,
+                    'end' => $request->end,
+                ]);
+                return response()->json($event);
+                break;
+           case 'update':
+            $event = Event::find($request->id)->update([
+                'title' => $request->title,
+                'start' => $request->start,
+                'end' => $request->end,
+            ]);
+            return response()->json($event);
+            break;
+            case 'delete':
+                $event = Event::find($request->id)->delete();
+                return response()->json($event);
+                break;
+                default:
+                # code...
+                break;
+            }
+        }
+ 
+
+    // public function index(){
+    //     $events = [];
+     
+    //     $appointments = Counsel::with(['student', 'guidance'])->get();
+     
+    //     foreach ($appointments as $appointment) {
+    //         $events[] = [
+    //             'title' => $appointment->student->fname . ' ' . $appointment->student->lname . ' (' . $appointment->guidance->fname . ' ' . $appointment->guidance->lname . ')',
+    //             'start' => $appointment->scheduled_date . ' ' . $appointment->start_time,
+    //             'end' => $appointment->scheduled_date . ' ' . $appointment->end_time,
+    //         ];
+    //     }
+        
+    //     $counsel = Counsel::with('student')->orderBy('id','DESC')->get();
+    //     return View::make('counsel.index', compact('counsel', 'events'));
+    // }
 
     public function create(Request $request, $id)
     {
         $student = Student::find($id);
         $students = Student::with('user')->where('id',$student->id)->first();
        
-        return View::make('counsel.create',compact('students'));
+        return View::make('counsel.calendar',compact('students'));
     }
+
 
     public function store(Request $request)
     {
