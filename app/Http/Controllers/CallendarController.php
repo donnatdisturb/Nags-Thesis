@@ -9,9 +9,26 @@ use App\Models\Guidance;
 use App\Models\User;
 use App\Models\Counsel;
 use DB;
+<<<<<<< HEAD
 
 class CallendarController extends Controller
 {
+=======
+use Carbon\Carbon;
+
+class CallendarController extends Controller
+{
+    protected function isTimeSlotAvailable($start, $end, $events)
+    {
+        foreach ($events as $event) {
+            if (($start >= $event['start'] && $start < $event['end']) || ($end > $event['start'] && $end <= $event['end'])) {
+                return false;
+            }
+        }
+        return true; 
+    }
+
+>>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
    /**
 
      * Write code on Method
@@ -67,6 +84,7 @@ class CallendarController extends Controller
  
      public function ajax(Request $request)
      {
+<<<<<<< HEAD
         // dd($request->all());
         switch ($request->type) {
             case 'add':
@@ -91,6 +109,43 @@ class CallendarController extends Controller
                 return response()->json($event);
                 break;
                 
+=======
+        switch ($request->type) {
+            case 'add':
+                $coachingDate = $request->coachingDate;
+                $starttime = $request->starttime;
+                $endtime = $request->endtime;
+                
+                $conflictingEvents = Counsel::where(function ($query) use ($coachingDate, $starttime, $endtime) {
+                    $query->where(function ($query) use ($coachingDate, $starttime, $endtime) {
+                        $query->whereDate('scheduled_date', '=', $coachingDate)
+                        ->whereTime('start_time', '<', $endtime)
+                        ->whereTime('end_time', '>', $starttime);
+                    })->orWhere(function ($query) use ($coachingDate, $starttime, $endtime) {
+                        $query->whereDate('scheduled_date', '=', $coachingDate)
+                        ->whereTime('start_time', '<', $endtime)
+                        ->whereTime('end_time', '>', $starttime);
+                    });
+                })
+                ->get();
+                
+                if ($conflictingEvents->isEmpty()) {
+                    $event = DB::table('counsil')->insert([
+                        'scheduled_date' => $coachingDate,
+                        'start_time' => $request->starttime, 
+                        'end_time' => $request->endtime,
+                        'guidance_id' => $request->guidance,
+                        'student_id' => $request->student,
+                        'Status' => 'PENDING',
+                    ]);
+            
+                    return response()->json($event);
+                } else {
+                    return response()->json(['error' => 'Time slot is already taken.']);
+                }
+                break;
+            
+>>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
                 case 'update':
                     $event = Counsel::find($request->id)->update([
                         'title' => $request->title,
@@ -109,4 +164,8 @@ class CallendarController extends Controller
               break;
             }
         }
+<<<<<<< HEAD
     }
+=======
+    }
+>>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
