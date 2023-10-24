@@ -10,8 +10,9 @@
                     <a href="{{ route('studentprofile') }}" class="d-block">{{ Auth::user()->name }}</a>
                 @endif   
             @endif --}}
-            <p style="text-align: center; color: #ffffff;"><em>A Digitalized Management System</em></p>
-            <p style="text-align: center; color: #ffffff;"><em>Student Violation Record</em></p>
+            <p style="text-align: center; color: #ffffff;"><em>A Digitalized Guidance</em></p>
+            <p style="text-align: center; color: #ffffff;"><em>Management System of</em></p>
+            <p style="text-align: center; color: #ffffff;"><em>Muntinlupa Business High School</em></p>
             {{-- <p>Student Violation Record</p> --}}
         </div>
     </div>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PASSway - A Digitalized Management System for Student Violation Record</title>
+    <title>NAGS (Notify, Administer, General Publication and Scheduling)</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -38,9 +38,9 @@
         <a href="http://127.0.0.1:8000/" class="navbar-brand p-0">
             <h1 class="m-0 text-uppercase text-primary">
                 {{-- <i class="fa fa-ticket text-secondary me-3"></i> --}}
-                <img src="{{ asset('images/PASSwayLogo.png') }}" alt="PASSway Logo"
+                <img src="{{ asset('images/NAGSlogo.png') }}" alt="NAGS Logo"
                     style="margin-top: -.6rem;margin-right: .3rem;height: 40px">
-                PASSway
+                NAGS
             </h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -93,7 +93,7 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <img src="{{ asset('images/PASSwayLogo.png') }}" alt="PASSway Logo"
+                    <img src="{{ asset('images/NAGSLogo.png') }}" alt="NAGS Logo"
                         style="margin-top: -.6rem;margin-right: .3rem;height: 250px">
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -102,7 +102,7 @@
                     <p class="mb-4">All content is in the public domain unless otherwise stated.</p>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>KM. 14 East Service Road,
                         Taguig City Philippines</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>passway@tup.edu.ph</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>NAGS@tup.edu.ph</p>
                     <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 34567 89</p>
                 </div>
                 <div class="col-lg-3 col-md-6">

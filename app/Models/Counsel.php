@@ -19,10 +19,14 @@ class Counsel extends Model
         return $this->belongsTo(Guidance::class);
     }
 
+    // public function student()
+    // {
+    //     return $this->belongsTo(Student::class);
+    // }
     public function student()
     {
-        return $this->belongsTo(Student::class);
-    }
+    return $this->belongsTo(Student::class, 'student_id', 'id');
+}
 
 
 }

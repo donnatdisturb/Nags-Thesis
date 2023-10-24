@@ -99,7 +99,7 @@
 
 .bg-hero {
     background: url(../images/PassWayBanners.png) top right no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 
 @media (max-width: 991.98px) {
@@ -215,8 +215,8 @@
     background-size: cover;
     height: 90px;
     padding: 0 30px;
-    right: 45px;
-    left: 45px;
+    right: 5px;
+    left: 5px;
     bottom: -45px;
     transition: .5s;
     z-index: 1;

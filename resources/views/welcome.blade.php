@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PASSway - A Digitalized Management System for Student Violation Record</title>
+    <title>NAGS (Notify, Administer, General Publication and Scheduling)</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -72,9 +72,9 @@
         <a href="http://127.0.0.1:8000/" class="navbar-brand p-0">
             <h1 class="m-0 text-uppercase text-primary">
                 {{-- <i class="fa fa-ticket text-secondary me-3"></i> --}}
-                <img src="{{ asset('images/PASSwayLogo.png') }}" alt="PASSway Logo"
+                <img src="{{ asset('images/NAGSLogo.png') }}" alt="NAGS Logo"
                     style="margin-top: -.6rem;margin-right: .3rem;height: 40px">
-                PASSway
+                    NAGS
             </h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -84,7 +84,7 @@
             <div class="navbar-nav ms-auto py-0 pe-4 border-end border-5 border-primary">
                 <a href="{{ URL::to('/') }}" class="nav-item nav-link active">Home</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About TUPT</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About MBHS</a>
                     <div class="dropdown-menu m-0">
                         <a href="{{ URL::to('tup-mission-vision') }}" class="dropdown-item">Mission & Vision</a>
                         <a href="{{ URL::to('handbook') }}" class="dropdown-item">Student Handbook</a>
@@ -125,11 +125,8 @@
         <div class="container py-5">
             <div class="row justify-content-start">
                 <div class="col-lg-8 text-center text-lg-start">
-                    <h4 class="display-1 text-dark">A Digitalized Management System for Student Violation Record</h4>
-                    <p class="fs-4 text-dark mb-4">A system that will help the school, specifically the Guidance Office,
-                        to manage and
-                        easily facilitate the records of the students. Also, to help disseminate the announcements
-                        regarding the future activities and events of the Guidance. </p>
+                    <h4 class="display-1 text-dark">A Digitalized Guidance Management System of Muntinlupa Business High School</h4>
+                    <p class="fs-4 text-dark mb-4">A system that aims to help the school, specifically the guidance office, manage and easily facilitate the records of the students and the guidance office.</p>
                     <div class="pt-2">
                         <a href="" class="btn btn-secondary rounded-pill py-md-3 px-md-5 mx-2">Get A Quote</a>
                         {{-- <a href="" class="btn btn-outline-secondary rounded-pill py-md-3 px-md-5 mx-2">Contact Us</a> --}}
@@ -237,7 +234,7 @@
                 <hr class="w-25 mx-auto text-primary" style="opacity: 1;">
             </div>
             <div class="row g-3">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-3 col-md-3">
                     <div class="team-item">
                         <img class="img-fluid w-100" src="images/Ganiron.jpeg" alt="Nathaniel Ganiron">
                         <div class="team-text">
@@ -248,17 +245,18 @@
                                     href="https://www.facebook.com/nathaniel.ganiron.7"><i
                                         class="fab fa-facebook-f"></i></a>
                             </div>
-                            <div class="mt-auto mb-3">
+                            <div class="mt-auto mb-3" style="text-align:center;">
                                 <h4 class="mb-1" style="color: #ffe468;">Nathaniel Ganiron</h4>
-                                <span class="text-uppercase" style="color: #FCFFE7;">>PASSway Developer</span>
+                                <span class="text-uppercase" style="color: #FCFFE7;">NAGS Developer</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+
+                <div class="col-lg-3 col-md-3">
                     <div class="team-item">
                         <img class="img-fluid w-100" src="images/Santiago.jpg" alt="Shadonna Santiago">
-                        <div class="team-text">
+                        <div class="team-text" style="text-alignment:center;">
                             <div class="team-social">
                                 <a class="btn btn-lg btn-secondary btn-lg-square rounded-circle me-2"
                                     href="https://www.instagram.com/luvss4donna/"><i class="fab fa-instagram"></i></a>
@@ -266,14 +264,15 @@
                                     href="https://www.facebook.com/aoi.kiriya.31"><i
                                         class="fab fa-facebook-f"></i></a>
                             </div>
-                            <div class="mt-auto mb-3">
+                            <div class="mt-auto mb-3" style="text-align:center;">
                                 <h4 class="mb-1" style="color: #ffe468;">Shadonna Santiago</h4>
-                                <span class="text-uppercase" style="color: #FCFFE7;">>PASSway Developer</span>
+                                <span class="text-uppercase" style="color: #FCFFE7;">NAGS Developer</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+
+                <div class="col-lg-3 col-md-3">
                     <div class="team-item">
                         <img class="img-fluid w-100" src="images/Geroza.jpg" alt="Abigail Geroza">
                         <div class="team-text">
@@ -284,9 +283,28 @@
                                     href="https://www.facebook.com/abigail.geroza"><i
                                         class="fab fa-facebook-f"></i></a>
                             </div>
-                            <div class="mt-auto mb-3">
+                            <div class="mt-auto mb-3" style="text-align:center;">
                                 <h4 class="mb-1" style="color: #ffe468;">Abigail Geroza</h4>
-                                <span class="text-uppercase" style="color: #FCFFE7;">PASSway Developer</span>
+                                <span class="text-uppercase" style="color: #FCFFE7;">NAGS Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3">
+                    <div class="team-item">
+                        <img class="img-fluid w-100" src="images/Geroza.jpg" alt="Dexter Jay Cancino">
+                        <div class="team-text">
+                            <div class="team-social">
+                                <a class="btn btn-lg btn-secondary btn-lg-square rounded-circle me-2"
+                                    href="https://www.instagram.com/djaydxtr/"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-lg btn-secondary btn-lg-square rounded-circle me-2"
+                                    href="https://www.facebook.com/djay.cancino"><i
+                                        class="fab fa-facebook-f"></i></a>
+                            </div>
+                            <div class="mt-auto mb-3" style="text-align:center;">
+                                <h4 class="mb-1" style="color: #ffe468;">Dexter Jay Cancino</h4>
+                                <span class="text-uppercase" style="color: #FCFFE7;">NAGS Developer</span>
                             </div>
                         </div>
                     </div>
@@ -415,7 +433,7 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <img src="{{ asset('images/PASSwayLogo.png') }}" alt="PASSway Logo"
+                    <img src="{{ asset('images/NAGSLogo.png') }}" alt="NAGS Logo"
                         style="margin-top: -.6rem;margin-right: .3rem;height: 250px">
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -424,7 +442,7 @@
                     <p class="mb-4">All content is in the public domain unless otherwise stated.</p>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>KM. 14 East Service Road,
                         Taguig City Philippines</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>passway@tup.edu.ph</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>NAGS@tup.edu.ph</p>
                     <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 34567 89</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -468,7 +486,7 @@
             <div class="row g-0">
                 <div class="col-md-6 text-center text-md-start">
                     <p class="mb-md-0">Copyright &copy; <a class="text-dark fw-bold"
-                            href="http://127.0.0.1:8000/">PASSway</a>. All Rights Reserved.</p>
+                            href="http://127.0.0.1:8000/">NAGS</a>. All Rights Reserved.</p>
                 </div>
             </div>
         </div>

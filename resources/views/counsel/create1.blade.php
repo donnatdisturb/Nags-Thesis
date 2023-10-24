@@ -19,14 +19,6 @@
             <!-- Other form fields here -->
         
             <div class="form-group">
-                <label for="description" class="control-label">Student ID:</label>
-                <input type="text" class="form-control" id="student_id" name="student_id" value="{{ $students->id }}"
-                    readonly="readonly">
-                @if ($errors->has('description'))
-                    <small>{{ $errors->first('description') }}</small>
-                @endif
-            </div>
-            <div class="form-group">
                 <label for="description" class="control-label">Student Name:</label>
                 <input type="text" class="form-control" id="student_name" name="student_name"
                     value="{{ $students->fname }} {{ $students->lname }}"readonly="readonly">

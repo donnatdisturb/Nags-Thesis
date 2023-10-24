@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\StudentRecordController;
 use App\Http\Controllers\ViolationController;
+use App\Http\Controllers\CallendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,10 @@ use App\Http\Controllers\ViolationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('fullcalender', [CallendarController::class, 'index']);
+Route::post('fullcalenderAjax', [CallendarController::class, 'ajax']);
+
+// Route::post('fullcalenderAjax', [CounselController::class, 'ajax']);
 
 Route::get('/violation', [ViolationController::class, 'showForm']);
 Route::post('/classify', [ViolationController::class, 'classifyViolation']);
@@ -107,7 +112,7 @@ Route::group(['middleware' => 'role:guidance'], function() {
     Route::get('guidanceedit/{id}', [GuidanceController::class, 'editProfile'])->name('guidance.editprofile'); 
     Route::get('guidance/passwordedit/{id}', [GuidanceController::class, 'editPassword'])->name('guidance.editpassword'); 
     Route::put('guidance/profile/{id}', [GuidanceController::class, 'updateprofile'])->name('guidanceprofile.update');
-    Route::get('create/counsel/{id}', [CounselController::class, 'create'])->name('counsel.create'); 
+    Route::get('create/counsel', [CounselController::class, 'create'])->name('counsel.create'); 
     Route::post('/counsel',[CounselController::class, 'store'])->name('counsel.store');
     Route::get('/counsel/index',[CounselController::class, 'index'])->name('counsel.index');
     Route::get('/counsel/edit/{id}',[CounselController::class, 'edit'])->name('counsel.edit');

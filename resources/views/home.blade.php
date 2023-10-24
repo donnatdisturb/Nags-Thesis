@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 style='text-align: center;'>{{ __('PASSway: A Digitalized Management System for Student Violation Record
+                            <h5 style='text-align: center;'>{{ __('NAGS (Notify, Administer, General Publication and Scheduling)
                                 ') }}</h5>
                             <br>
                             <div class="flex justify-center pt-8 sm:justify-center sm:pt-200">
