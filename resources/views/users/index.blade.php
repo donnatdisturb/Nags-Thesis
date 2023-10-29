@@ -10,7 +10,7 @@
     <br>
     {{-- <h2 style="text-align: center; font-weight: 1000">LIST OF ALL USERS IN THE SYSTEM</h2>
         <hr style= "position: relative; top: 20px; border: none; height: 10px; background: #2c1616; margin: 10px;"> --}}
-    <img src="{{ asset('images/12.png') }}" width="1269px" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/12.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <BR>
     {{-- </div><!-- /.col -->
             </div><!-- /.row -->

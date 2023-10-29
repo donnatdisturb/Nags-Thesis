@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <br>
-    <h2 style="text-align: center; font-weight: 1000">EDIT YOUR PROFIE</h2>
-    <hr style="position: relative; top: 20px; border: none; height: 10px; background: #2c1616; margin: 10px;">
+    <img src="{{ asset('images/27.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <br>
     <div class="container">
         {{ Form::model($guidance, ['route' => ['guidanceprofile.update', $guidance->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) }}

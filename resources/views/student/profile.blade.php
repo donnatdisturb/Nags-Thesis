@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
     <br>
-    <img src="{{ asset('images/25.png') }}" width="1269px" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/25.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <div class="student-profile py-4">
         <div class="container">
             <div class="row">

@@ -5,7 +5,7 @@
             {{-- <h1>GROOMING SERVICE DETAIL</h1> --}}
 
             <br>
-            <img src="{{ asset('images/31.png') }}" width="1269px" style="padding:5px; margin:0px" />
+            <img src="{{ asset('images/31.png') }}" width="1090px" style="padding:5px; margin:0px" />
             <BR>
             <div>
                 <a href="{{ route('studentrecordindex') }}" class="btn btn-success" role="button">Back</a>

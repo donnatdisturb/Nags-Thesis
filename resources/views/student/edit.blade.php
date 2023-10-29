@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <br>
-    <img src="{{ asset('images/16.png') }}" width="1269px" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/16.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <div class="container">
 
         {{ Form::model($students, ['route' => ['student.update', $students->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) }}

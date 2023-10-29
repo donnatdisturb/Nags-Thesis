@@ -11,7 +11,7 @@
     <button type="submit">Search</button>
 
 </form> --}}
-        <img src="{{ asset('images/3.png') }}" width="1269px" style="padding:5px; margin:0px" />
+        <img src="{{ asset('images/3.png') }}" width="1090px" style="padding:5px; margin:0px" />
         @if ($studsearch->isNotEmpty())
             <br>
             <h3 style="font-weight: 1000; text-transform: uppercase; text-align: center;">{{ request('search') }}'S VIOLATION

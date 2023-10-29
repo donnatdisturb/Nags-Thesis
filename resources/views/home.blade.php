@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 style='text-align: center;'>{{ __('NAGS (Notify, Administer, General Publication and Scheduling)
+                            <h5 style='text-align: center;'>{{ __('About NAGS (Notify, Administer, General Publication and Scheduling)
                                 ') }}</h5>
                             <br>
                             <div class="flex justify-center pt-8 sm:justify-center sm:pt-200">
@@ -37,25 +37,21 @@
 
                             <p class="card-text" style='text-align: justify; text-indent:50px;'>
                                 {{-- {{ __('Sample static text page ') }} --}}
-                                In today’s generation, it can be concluded that technology has been a part of people’s life. 
-                                People use technology for learning purposes, entertainment purposes and most especially work 
-                                purposes. Thus, from today's circumstances technology is constantly a part of everyone’s lives. 
-                                Technology is used by everyone for learning, entertainment, and most importantly for work. 
-                                Consequently, the development of technology has led to a considerable change in the way people 
-                                work and live. As stated by Cascio and Montealegre (2016), who discuss how technology has 
-                                revolutionized work and organization, new technologies have not only helped employees do jobs 
-                                more quickly and effectively but have also enabled significant changes in how work was carried 
-                                out. Numerous studies have found that technology significantly affects a variety of industries, 
-                                including business, medical, education, and even local public sector. The educational sector is one 
-                                illustration of a local public sector. The integration of technology into current processes such as 
-                                enrollment, student records, grade presentation, and teacher evaluation has proven to be very 
-                                beneficial, particularly during pandemics. These IT solutions were created to help, optimize, and 
-                                raise the standard of performance and operations. These advancements have a big impact and 
-                                produce good outcomes in educational institutions (Liu, Z., Wang, H., and Zan, H et al., 2010). 
-                                Based on the study of Suvin (2019), a student information management system (SIMS) provides 
-                                several benefits, including a hassle-free registration procedure, administration of student information, 
-                                construction of a student portal, academic counseling, no more data leaks, and even 
-                                effective communication. </p>
+                                In today's generation, technology has been a part of people's life. People use technology for learning, 
+                                entertainment, and work purposes. Thus, in today's circumstances, technology is constantly a part of everyone's 
+                                lives. Everyone uses technology for learning, entertainment, and, most importantly, work. Consequently, the 
+                                development of technology has led to a considerable change in how people work and live. As stated by Cascio 
+                                and Montealegre (2016), who discuss how technology has revolutionized work and organization, new technologies 
+                                have not only helped employees do jobs more quickly and effectively but have also enabled significant changes 
+                                in how work is carried out. Numerous studies have found that technology significantly affects various industries, 
+                                including business, medicine, education, and the local public sector. The educational sector is one illustration 
+                                of a local public sector. Integrating technology into current processes such as enrollment, student records, 
+                                grade presentation, and teacher evaluation has proven very beneficial, particularly during pandemics. These IT 
+                                solutions were created to help optimize and raise the standard of performance and operations. These advancements 
+                                have a big impact and produce good outcomes in educational institutions (Liu, Z., Wang, H., and Zan, H et al., 2010). 
+                                Based on the study of Suvin (2019), a student information management system (SIMS) provides several benefits, 
+                                including a hassle-free registration procedure, student information administration, student portal construction, 
+                                academic counseling, no more data leaks, and even effective communication.  </p>
 
                             <p class="card-text" style='text-align: justify; text-indent:50px;'> 
                                 Aside from academics, schools and universities strive to develop moral and ethical values 
@@ -71,14 +67,18 @@
                             </p>
 
                             <p class="card-text" style='text-align: justify; text-indent:50px;'> 
-                                This research aims to design and create a web-based management system for student 
-                                violation records that will assist schools and universities in managing their student violation 
-                                records more quickly and effectively. This research will use both quantitative and qualitative 
-                                method. According to Bhandari (2020), Quantitative method is about collecting numerical data 
-                                meanwhile. Qualitative method is about collecting non-numerical data. This study will use a mixed 
-                                method, the researchers will be collecting numerical data by the number of violations of each 
-                                student. The researchers will also be collecting non-numerical data since the system will also 
-                                collect data answering how the system can help the parents, guidance counselor, and the student
+                                According to Gomez (2007)'s research, Filipino guidance workers take on tasks that are not typical of 
+                                their supposed job, but that they perform because of their pre-service training and the nature of 
+                                their work. According to the study, the majority of professionals do not know their specific job description 
+                                since there are services that they believe they are not equipped to perform. They have, however, learned to 
+                                perform them on the job. This, in turn, causes work dissatisfaction and discouragement on the part of the 
+                                guidance counselor.
+                            </p>
+
+                            <p class="card-text" style='text-align: justify; text-indent:50px;'> 
+                                The main objective of this study is to design and develop a web-based and mobile-based management system for students, 
+                                parents, and administrators that would assist schools manage, monitor, and facilitate faster and more effective work. 
+                                The system's purpose is to make the guidance transactions and numerous services available as smooth and simple as possible.
                             </p>
                         </div>
                     </div>

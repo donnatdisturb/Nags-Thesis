@@ -21,7 +21,7 @@
     </style>
 
     <br>
-    <img src="{{ asset('images/11.png') }}" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/11.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <BR>
     <div class="container">
         <form method="POST" action="{{ route('announcement.store') }}" enctype="multipart/form-data">

@@ -21,7 +21,7 @@
     </style>
 
     <br>
-    <img src="{{ asset('images/21.png') }}" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/21.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <BR>
     <div class="container">
         {{ Form::model($announcements, ['route' => ['announcement.update', $announcements->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) }}

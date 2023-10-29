@@ -1,7 +1,7 @@
 @extends('layouts.post')
 @section('content')
     <br>
-    <img src="{{ asset('images/TUPTCampusTour.png') }}"
+    <img src="{{ asset('images/MBHSCampusTour.png') }}"
         style=" width: 1295px; display: block;margin-left: auto;margin-right: auto;" />
     <div class="container features">
         <div class="row">

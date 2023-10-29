@@ -29,7 +29,7 @@
     </style>
 
     <br>
-    <img src="{{ asset('images/17.png') }}" width="1269px" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/17.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <BR>
 
     <div class="container">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <img src="{{ asset('images/8.png') }}" width="1269px" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/8.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-12">
@@ -101,7 +101,7 @@
 
                 <hr
                     style="position: relative; top: 20px; border: none; height: 10px; background: #2c1616; margin-bottom: 50px;">
-                <img src="{{ asset('images/9.png') }}" style="padding:5px; margin:0px" />
+                <img src="{{ asset('images/9.png') }}" width="1090px" style="padding:5px; margin:0px" />
                 <div class="container">
                     <div class="container">
                         @if (empty($violationrecord))

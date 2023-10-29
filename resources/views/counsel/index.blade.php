@@ -3,7 +3,7 @@
 
 
     <br>
-    <img src="{{ asset('images/19.png') }}" width="1269px" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/19.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <div class="container">
         <div id="calendar"></div>
         <br />

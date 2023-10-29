@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
     <br>
-    <img src="{{ asset('images/3.png') }}" width="1269px" style="padding:5px; margin:0px" />
+    <img src="{{ asset('images/3.png') }}" width="1090px" style="padding:5px; margin:0px" />
     <link href="{{ URL::asset('css/searchstyle.css') }}" rel="stylesheet">
 
     <div class="container">
