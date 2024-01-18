@@ -12,7 +12,7 @@ class StudentRecords extends Model
     public $table = 'studentrecords';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['date_recorded', 'remarks','student_id','violation_id','guidance_id', 'status', 'reported_by','evidence'];
+    protected $fillable = ['date_recorded', 'remarks','student_id','violation_id','punishment_id','offense_count ','guidance_id', 'status'];
 
     public static $rules = [
         'date_recorded'=>'required',
@@ -33,6 +33,9 @@ class StudentRecords extends Model
     }
     public function guidances() {
         return $this->belongsTo(Guidance::class, 'guidance_id');
+    }
+    public function punishments() {
+        return $this->belongsTo(Punishments::class, 'punishment_id');
     }
     public function getSearchResult(): SearchResult
     {

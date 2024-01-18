@@ -31,25 +31,58 @@
     setInterval(showTime, 1000);
 </script>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'NAGS') }}</title>
+{{-- <head> --}}
+    {{-- <meta charset="utf-8"> --}}
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
+    {{-- <meta name="csrf-token"> --}}
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+    {{-- <title>{{ config('app.name', 'NAGS') }}</title> --}}
+    <!-- Include jQuery from a CDN -->
+    {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> --}}
+
 
     <!-- Google Font: Source Sans Pro -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script> --}}
+    
     
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    {{-- <link rel="stylesheet" --}}
+        {{-- href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> --}}
+    <!-- Font Awesome -->
+    {{-- <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}"> --}}
+    <!-- Theme style -->
+    {{-- <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}"> --}}
+    {{-- @yield('styles') --}}
+{{-- </head> --}}
+<head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+     <!-- Google Font: Source Sans Pro -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script> 
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css"> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.js"></script>   --}}
+    
+    
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     @yield('styles')
+    @yield('script')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -150,7 +183,9 @@
 
     <!-- REQUIRED SCRIPTS -->
 
-    @vite('resources/js/app.js')
+    {{-- @vite('resources/js/app.js') --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <!-- AdminLTE App -->
     <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
 
@@ -158,5 +193,6 @@
     @stack('scripts')
 
 </body>
+
 
 </html>

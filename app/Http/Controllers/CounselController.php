@@ -9,241 +9,130 @@ use App\Models\Guidance;
 use App\Models\User;
 use App\Models\Counsel;
 use DB;
-use Auth;
-use Mail;
-use Redirect;
-use View;
-use App\Mail\ContactStudent; 
-use App\Mail\ContactStudent2;
-use App\Mail\ContactStudent3; 
-use App\Mail\ContactStudent4; 
-
+use Carbon\Carbon;
+use Validator;
 
 class CounselController extends Controller
 {
-    Public function showcalendar()
-    {
-        return view('counsel.calendar');
-    }
-    public function __invoke()
-    {
-        $events = [];
- 
-        $appointments = Counsel::with(['student', 'guidance'])->get();
- 
-        foreach ($appointments as $appointment) {
-            $events[] = [
-                'title' => $appointment->student->fname . ' ('.$appointment->guidance->fname.')',
-                'start' => $appointment->start_time,
-                'end' => $appointment->end_time,
-            ];
-        }
- 
-        return view('counsel.index', compact('events'));
-    }
-    public function index(Request $request)
+    protected function isTimeSlotAvailable($start, $end, $events)
 {
-    if ($request->ajax()) {
-        $counselSchedules = Counsel::with(['student', 'guidance'])->get();
-        $events = [];
-
-        foreach ($counselSchedules as $schedule) {
-            $events[] = [
-                'id' => $schedule->id,
-                'title' => $schedule->title,
-                'start' => $schedule->scheduled_date,
-                'end' => $schedule->scheduled_date,
-            ];
+    foreach ($events as $event) {
+        $eventStart = $event['start'];
+        $eventEnd = $event['end'];
+        
+        // Assuming $eventStart and $eventEnd are in the "YYYY-MM-DD HH:MM" format
+        if (($start >= $eventStart && $start < $eventEnd) || ($end > $eventStart && $end <= $eventEnd)) {
+            return false;
         }
-
-        return response()->json($events);
     }
-
-    return view('counsel.calendar');
+    return true;
 }
 
-    public function ajax(Request $request)
+   /**
+
+     * Write code on Method
+
+     *
+
+     * @return response()
+
+     */
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $counselings = Counsel::select('id', 'scheduled_date as start_date', 'start_time', 'end_time', 'student_id', 'guidance_id')
+            ->with('student:id,fname,lname')
+            ->with('guidance:id,fname,lname')
+            ->get();
+            
+            $formattedData = [];
+            foreach ($counselings as $counseling) {
+                $startDatetime = $counseling->start_date . ' ' . $counseling->start_time;
+                $endDatetime = $counseling->start_date . ' ' . $counseling->end_time;
+                $student = $counseling->student;
+                $professor = $counseling->guidance;
+                
+                $formattedData[] = [
+                    'id' => $counseling->id,
+                    'title' => $student->fname . ' ' . $student->lname,
+                    'start' => $startDatetime,
+                    'end' => $endDatetime,
+                    'studentName' => $student->fname . ' ' . $student->lname,
+                    'professorName' => $professor->fname . ' ' . $professor->lname,
+                ];
+            }
+            return response()->json($formattedData);
+        }
+        
+        $students = Student::all();
+        $guidance = Guidance::all();
+        return view('FullCalendar', compact('students', 'guidance'));
+        // return view('counsel.index', compact('students', 'guidance'));
+    }
+
+     /**
+ 
+      * Write code on Method
+ 
+      *
+ 
+      * @return response()
+ 
+      */
+ 
+     public function ajax(Request $request)
+     {
         switch ($request->type) {
             case 'add':
-                $event = Event::create([
-                    'title' => $request->title,
-                    'start' => $request->start,
-                    'end' => $request->end,
-                ]);
-                return response()->json($event);
+                $coachingDate = $request->coachingDate;
+                $starttime = $request->starttime;
+                $endtime = $request->endtime;
+                
+                $conflictingEvents = Counsel::where(function ($query) use ($coachingDate, $starttime, $endtime) {
+                    $query->where(function ($query) use ($coachingDate, $starttime, $endtime) {
+                        $query->whereDate('scheduled_date', '=', $coachingDate)
+                        ->whereTime('start_time', '<', $endtime)
+                        ->whereTime('end_time', '>', $starttime);
+                    })->orWhere(function ($query) use ($coachingDate, $starttime, $endtime) {
+                        $query->whereDate('scheduled_date', '=', $coachingDate)
+                        ->whereTime('start_time', '<', $endtime)
+                        ->whereTime('end_time', '>', $starttime);
+                    });
+                })
+                ->get();
+                
+                if ($conflictingEvents->isEmpty()) {
+                    $event = DB::table('counsil')->insert([
+                        'scheduled_date' => $coachingDate,
+                        'start_time' => $request->starttime, 
+                        'end_time' => $request->endtime,
+                        'guidance_id' => $request->guidance,
+                        'student_id' => $request->student,
+                        'Status' => 'PENDING',
+                    ]);
+            
+                    return response()->json($event);
+                } else {
+                    return response()->json(['error' => 'Time slot is already taken.']);
+                }
                 break;
-           case 'update':
-            $event = Event::find($request->id)->update([
-                'title' => $request->title,
-                'start' => $request->start,
-                'end' => $request->end,
-            ]);
-            return response()->json($event);
-            break;
-            case 'delete':
-                $event = Event::find($request->id)->delete();
-                return response()->json($event);
-                break;
-                default:
-                # code...
-                break;
-            }
-        }
+            
+                case 'update':
+                    $event = Counsel::find($request->id)->update([
+                        'title' => $request->title,
+                        'start' => $request->start,
+                        'end' => $request->end,
+                    ]);
+                    return response()->json($event);
+                    break;
+                
+    //             case 'delete':
+    //                 $event = Counsel::find($request->id)->delete();
+    //                 return response()->json($event);
+    //                 break;
+    //                 default:
  
-
-    // public function index(){
-    //     $events = [];
-     
-    //     $appointments = Counsel::with(['student', 'guidance'])->get();
-     
-    //     foreach ($appointments as $appointment) {
-    //         $events[] = [
-    //             'title' => $appointment->student->fname . ' ' . $appointment->student->lname . ' (' . $appointment->guidance->fname . ' ' . $appointment->guidance->lname . ')',
-    //             'start' => $appointment->scheduled_date . ' ' . $appointment->start_time,
-    //             'end' => $appointment->scheduled_date . ' ' . $appointment->end_time,
-    //         ];
-    //     }
-        
-    //     $counsel = Counsel::with('student')->orderBy('id','DESC')->get();
-    //     return View::make('counsel.index', compact('counsel', 'events'));
-    // }
-
-    public function create(Request $request, $id)
-    {
-        $student = Student::find($id);
-        $students = Student::with('user')->where('id',$student->id)->first();
-       
-        return View::make('counsel.calendar',compact('students'));
-    }
-
-
-    public function store(Request $request)
-    {
-        try{
-            $guidance = Guidance::where('user_id',Auth::id())->first();
-            $student = Student::find($request->student_id);
-
-            DB::beginTransaction();
-            $counsel = new Counsel;
-        
-            $counsel->guidance()->associate($guidance);
-            $counsel->student()->associate($student);
-            $counsel->scheduled_date= $request->scheduled_date;
-            $counsel->start_time= $request->start_time;
-            $counsel->end_time= $request->end_time;
-            $counsel->Status = 'PENDING';
-       
-            $counsel->save();
-        }
-        catch (\Exception $e) {
-            DB::rollback();
-            return redirect()->route('topviolator')->with('error', $e->getMessage());
-        }
-        $student_id = Student::find($request->student_id);
-        $stud = Student::with('user')->where('id',$student_id->id)->first();
-        $guidance_user = Auth::user()->id;
-        $guidance = Guidance::with('user')->where('user_id', $guidance_user)->first();
-        $data = array(
-            'student_fname'=>$student->fname,
-            'student_lname'=>$student->lname,
-            'guidance_fname'=>$guidance->fname,
-            'guidance_lname'=>$guidance->lname,
-            'start_time'=>$counsel->start_time,
-            'end_time'=>$counsel->end_time,
-            'scheduled_date'=>$counsel->scheduled_date
-        );
-        Mail::to($stud->user->email)->send(new ContactStudent($data));
-        DB::commit();
-        return Redirect::to('/counsel/index')->with('success','counsel Recorded!');
-    }
-
-    public function edit($id)
-    {
-        $counsel = counsel::find($id);
-        $counsels = counsel::with('student')->where('id',$counsel->id)->first();
-
-        return View::make('counsel.edit',compact('counsel','counsels'));
-
-    }
-
-    public function update(Request $request,$id){
-        
-        try{
-            
-            $guidance = Guidance::where('user_id',Auth::id())->first();
-            $student = Student::find($request->student_id);
-            $counsel = Counsel::find($id);
-    
-            DB::beginTransaction();
-            $counsels = Counsel::find($id);
-            
-            $counsels->guidance()->associate($guidance);
-            $counsels->student()->associate($student);
-            $counsels->scheduled_date= $request->scheduled_date;
-            $counsels->start_time= $request->start_time;
-            $counsels->end_time= $request->end_time;
-            $counsels->Status = $request->Status;
-
-            $counsels->update();
-        }
-        
-        catch (\Exception $e) {
-            DB::rollback();
-            return redirect()->route('topviolator')->with('error', $e->getMessage());
-        }
-        
-        if($request->Status == 'DID NOT ATTEND'){
-            $student_id = Student::find($request->student_id);
-            $stud = Student::with('user')->where('id',$student_id->id)->first();
-            $guidance_user = Auth::user()->id;
-            $guidance = Guidance::with('user')->where('user_id', $guidance_user)->first();
-            $data = array(
-                'student_fname'=>$student->fname,
-                'student_lname'=>$student->lname,
-                'guidance_fname'=>$guidance->fname,
-                'guidance_lname'=>$guidance->lname,
-                'start_time'=>$counsel->start_time,
-                'end_time'=>$counsel->end_time,
-                'scheduled_date'=>$counsel->scheduled_date
-            );
-            Mail::to($stud->user->email)->send(new ContactStudent2($data));
-        }
-        elseif($request->Status == 'ATTENDED'){
-            $student_id = Student::find($request->student_id);
-            $stud = Student::with('user')->where('id',$student_id->id)->first();
-            $guidance_user = Auth::user()->id;
-            $guidance = Guidance::with('user')->where('user_id', $guidance_user)->first();
-            $data = array(
-            'student_fname'=>$student->fname,
-            'student_lname'=>$student->lname,
-            'guidance_fname'=>$guidance->fname,
-            'guidance_lname'=>$guidance->lname,
-            'start_time'=>$counsel->start_time,
-            'end_time'=>$counsel->end_time,
-            'scheduled_date'=>$counsel->scheduled_date
-        );
-        Mail::to($stud->user->email)->send(new ContactStudent4($data));
-    }
-    DB::commit();
-    
-    if($request->Status == 'PENDING'){
-        $student_id = Student::find($request->student_id);
-        $stud = Student::with('user')->where('id',$student_id->id)->first();
-        $guidance_user = Auth::user()->id;
-        $guidance = Guidance::with('user')->where('user_id', $guidance_user)->first();
-        
-        $data = array(
-                 'student_fname'=>$student->fname,
-                 'student_lname'=>$student->lname,
-                 'guidance_fname'=>$guidance->fname,
-                 'guidance_lname'=>$guidance->lname,
-                 'start_time'=>$counsels->start_time,
-                 'end_time'=>$counsels->end_time,
-                 'scheduled_date'=>$counsels->scheduled_date
-                );
-                Mail::to($stud->user->email)->send(new ContactStudent3($data));
+              break;
             }
-            return Redirect::to('/counsel/index')->with('success','Counselling Record Updated Successfully!');
         }
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\GoodMoralController;
 use App\Http\Controllers\CounselController;
 use App\Http\Controllers\GuidanceController;
 use App\Http\Controllers\StudentController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\StudentRecordController;
 use App\Http\Controllers\ViolationController;
-use App\Http\Controllers\CallendarController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +26,14 @@ use App\Http\Controllers\CallendarController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('fullcalender', [CallendarController::class, 'index']);
-Route::post('fullcalenderAjax', [CallendarController::class, 'ajax']);
+Route::get('fullcalender', [CalendarController::class, 'index']);
+Route::post('fullcalenderAjax', [CalendarController::class, 'ajax']);
 
 // Route::post('fullcalenderAjax', [CounselController::class, 'ajax']);
 
 Route::get('/violation', [ViolationController::class, 'showForm']);
 Route::post('/classify', [ViolationController::class, 'classifyViolation']);
+Route::post('/getOffenseLevel', [StudentRecordController::class,'getOffenseLevel'])->name('getOffenseLevel');
 
 
     Route::get('/', [AnnouncementController::class, 'index1'])->name('welcome');
@@ -137,3 +139,11 @@ Route::group(['middleware' => 'role:student'],function(){
     Route::get('studentviolation/create', [StudentRecordController::class, 'create1'])->name('studentviolation.create'); 
     Route::post('studentviolationreport',[StudentRecordController::class, 'store'])->name('studentviolationreport.store');
 });
+
+//-----------------------GOOD MORAL ROUTES-------------------------------------------//
+Route::get('goodmoralstore', [GoodMoralController::class, 'store'])->name('goodmoralstore');
+Route::get('/goodmoral', [GoodMoralController::class, 'index'])->name('goodmoralindex');
+Route::delete('/goodmoral/delete/{id}', [GoodMoralController::class, 'delete'])->name('goodmoraldelete');
+Route::put('/goodmoral/update/{id}', [GoodMoralController::class, 'update'])->name('goodmoralupdate');
+Route::post('/goodmoral/{id}/schedule', [GoodMoralController::class, 'scheduleDate'])->name('goodmoralschedule');
+

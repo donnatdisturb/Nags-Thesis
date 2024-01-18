@@ -41,12 +41,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
     public function students() 
     {
         return $this->HasMany(Student::class,'user_id');
     }
+
     public function studentrecords() 
     {
         return $this->HasMany(StudentRecords::class,'reported_by');
+    }
+
+    public function isGuidance()
+    {
+        return $this->role === 'guidance'; // Adjust 'role' field based on your database structure
     }
 }

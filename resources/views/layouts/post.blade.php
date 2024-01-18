@@ -28,7 +28,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    {{-- <link href="css/style.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
@@ -146,7 +147,7 @@
             <div class="row g-0">
                 <div class="col-md-6 text-center text-md-start">
                     <p class="mb-md-0">Copyright &copy; <a class="text-dark fw-bold"
-                            href="http://127.0.0.1:8000/">PASSway</a>. All Rights Reserved.</p>
+                            href="http://127.0.0.1:8000/">NAGS</a>. All Rights Reserved.</p>
                 </div>
             </div>
         </div>

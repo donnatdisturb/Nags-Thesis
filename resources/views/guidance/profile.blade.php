@@ -1,7 +1,32 @@
 @extends('layouts.app')
 @section('content')
-    <br>
-    <img src="{{ asset('images/26.png') }}" width="1090px" style="padding:5px; margin:0px" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .image-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+    </style>
+
+    {{-- <br> --}}
+
+    <div class="image-container">
+        <img src="{{ asset('images/26.png') }}" alt="Flexible Image">
+    </div> 
+
     <div class="guidance-profile py-4">
         <div class="container">
             <div class="row">
@@ -10,7 +35,7 @@
                         <div class="card-header bg-transparent text-center">
                             @foreach ($guidanceinfo->chunk(4) as $guidance)
                                 @foreach ($guidance as $userdisplay)
-                                    <img src="{{ asset('storage/images/' . $userdisplay->guidance_img) }}"
+                                    <img src="{{ asset('/storage/images/' . $userdisplay->guidance_img) }}"
                                         style="width: 200px; height: 250px" />
                                     <h3 style="font-weight: 1000; text-transform: uppercase;">{{ $userdisplay->fname }}
                                         {{ $userdisplay->lname }}</h3>

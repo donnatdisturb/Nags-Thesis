@@ -1,22 +1,31 @@
 @extends('layouts.app')
-
 @section('content')
-    <!-- Content Header (Page header) -->
-    {{-- <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6"> --}}
-    {{-- <h1 class="m-0">{{ __('Users') }}</h1> --}}
-    <br>
-    {{-- <h2 style="text-align: center; font-weight: 1000">LIST OF ALL USERS IN THE SYSTEM</h2>
-        <hr style= "position: relative; top: 20px; border: none; height: 10px; background: #2c1616; margin: 10px;"> --}}
-    <img src="{{ asset('images/12.png') }}" width="1090px" style="padding:5px; margin:0px" />
-    <BR>
-    {{-- </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div> --}}
-    <!-- /.content-header -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .image-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+    </style>
+
+    {{-- <br> --}}
+
+    <div class="image-container">
+        <img src="{{ asset('images/12.png') }}" alt="Flexible Image">
+    </div>    
 
     <!-- Main content -->
     <div class="content">
@@ -35,7 +44,7 @@
                                 <thead>
                                     <tr>
                                         <th>User ID</th>
-                                        <th>Name</th>
+                                        {{-- <th>Name</th> --}}
                                         <th>Email</th>
                                         <th>Role</th>
                                     </tr>
@@ -44,7 +53,7 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
+                                            {{-- <td>{{ $user->name }}</td> --}}
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->role }}</td>
                                         </tr>

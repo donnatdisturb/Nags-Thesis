@@ -10,7 +10,7 @@
                         <div class="card-header bg-transparent text-center">
                             @foreach ($profile->chunk(4) as $students)
                                 @foreach ($students as $userdisplay)
-                                    <img src="{{ asset('/images/' . $userdisplay->student_img) }}"
+                                    <img src="{{ asset('/storage/images/' . $userdisplay->student_img) }}"
                                         style="width: 200px; height: 250px" />
                                     <h3 style="font-weight: 1000; text-transform: uppercase;">{{ $userdisplay->fname }}
                                         {{ $userdisplay->lname }}</h3>

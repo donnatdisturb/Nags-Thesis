@@ -1,6 +1,32 @@
 @extends('layouts.app')
 @section('content')
-    <img src="{{ asset('images/8.png') }}" width="1100px" style="padding:5px; margin:0px" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .image-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+    </style>
+
+    {{-- <br> --}}
+
+    <div class="image-container">
+        <img src="{{ asset('images/8.png') }}" alt="Flexible Image">
+    </div>
+    {{-- <img src="{{ asset('images/8.png') }}" width="1240px" style="padding:5px; margin:0px" /> --}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-12">
@@ -75,10 +101,15 @@
                         </div>
                     </div>
                 </div>
-
+            
                 <hr
                     style="position: relative; top: 20px; border: none; height: 10px; background: #2c1616; margin-bottom: 50px;">
-                <img src="{{ asset('images/9.png') }}" width="1090px" style="padding:5px; margin:0px" />
+                {{-- <img src="{{ asset('images/9.png') }}" width="1090px" style="padding:5px; margin:0px" /> --}}
+
+                <div class="image-container">
+                    <img src="{{ asset('images/9.png') }}" alt="Flexible Image">
+                </div>
+
                 <div class="container">
                     <div class="container">
                         @if (empty($violationrecord))

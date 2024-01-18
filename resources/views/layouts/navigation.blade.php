@@ -49,21 +49,21 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('users.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
-                    {{-- <i class="far fa-screen-users nav-icon"></i> --}}
-                    <p>
-                        {{ __('Users') }}
-                    </p>
+                <a href="{{ route('counsel.index') }}" class="nav-link">
+                    <i class="fas fa-chalkboard-teacher nav-icon"></i>
+                    <p>Coaching</p>
                 </a>
             </li>
 
             <BR>
             <p style="color: #ffffff;"><strong>RECORDS</strong></p>
                 <li class="nav-item">
-                    <a href="{{ route('counsel.index') }}" class="nav-link">
-                        <i class="fas fa-chalkboard-teacher nav-icon"></i>
-                        <p>Counselling Records</p>
+                    <a href="{{ route('users.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        {{-- <i class="far fa-screen-users nav-icon"></i> --}}
+                        <p>
+                            {{ __('Users') }}
+                        </p>
                     </a>
                 </li>
 
@@ -80,11 +80,11 @@
                         <p>Students Enrolled</p>
                     </a>
                 </li>
-                    
+
                 <li class="nav-item">
                     <a href="{{ route('studentrecordindex') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
-                        <p>Students Violation Records</p>
+                        <p>Students' Violation Records</p>
                     </a>
                 </li>
                     
@@ -92,6 +92,13 @@
                     <a href="{{ route('indexrecord') }}" class="nav-link">
                         <i class="fas fa-user-tag nav-icon"></i>
                         <p>Top Violators</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('goodmoralindex') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Request Good Moral</p>
                     </a>
                 </li>
         </ul>

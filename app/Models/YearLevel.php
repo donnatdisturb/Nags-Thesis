@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AcademicYear extends Model
+class YearLevel extends Model
 {
     use HasFactory;
-    public $table = 'academicyear';
+    public $table = 'YearLevels';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['year'];
+    protected $fillable = ['Name'];
 }

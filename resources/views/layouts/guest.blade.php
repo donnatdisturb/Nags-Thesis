@@ -45,8 +45,9 @@
 </head>
     
     {{-- <br style="line-height: 150%;"> --}}
-    <br><br><br><br><br><br><br><br><br><br><br>
-
+    {{-- <br><br><br><br><br><br><br><br><br><br><br> --}}
+<body>
+{{-- <body class="hold-transition login-page"> --}}
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm px-5 py-3 py-lg-0">
     <a href="http://127.0.0.1:8000/" class="navbar-brand p-0">
         <h1 class="m-0 text-uppercase text-primary">
@@ -85,21 +86,24 @@
     </div>
 </nav>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <br>
-        {{-- <div class="login-logo">
-            <a href="/">{{ config('app.name', 'PASSway') }}</a>
-        </div> --}}
-        <!-- /.login-logo -->
-        <div class="card">
-            @yield('content')
+{{-- <body class="hold-transition login-page"> --}}
+    <div class="container" style="display: flex;align-items: center;justify-content: center;">
+        <div class="login-box">
+            <br>
+            {{-- <div class="login-logo">
+                <a href="/">{{ config('app.name', 'PASSway') }}</a>
+            </div> --}}
+            <!-- /.login-logo -->
+            <div class="card">
+                @yield('content')
+            </div>
         </div>
     </div>
     <br>
     <!-- /.login-box -->
 
     @vite('resources/js/app.js')
+
     <!-- Bootstrap 4 -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->

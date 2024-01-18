@@ -1,7 +1,33 @@
 @extends('layouts.app')
 @section('content')
-    <br>
-    <img src="{{ asset('images/13.png') }}" width="1090px" style="padding:5px; margin:0px" />
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .image-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+    </style>
+
+    {{-- <br> --}}
+
+    <div class="image-container">
+        <img src="{{ asset('images/13.png') }}" alt="Flexible Image">
+    </div> 
+    {{-- <img src="{{ asset('images/13.png') }}" width="1090px" style="padding:5px; margin:0px" /> --}}
     <div class="container">
         <br />
         @if (Session::has('success'))
@@ -46,7 +72,7 @@
                 @foreach ($guidances as $guidance)
                     <tr>
                         <td>{{ $guidance->id }}</td>
-                        <td><img src="{{ asset('storage/images/' . $guidance->guidance_img) }}"
+                        <td><img src="{{ asset('public/images/' . $guidance->guidance_img) }}"
                                 style="width: 150px;height: 150px" /></td>
                         <td>{{ $guidance->fname }}</td>
                         <td>{{ $guidance->lname }}</td>

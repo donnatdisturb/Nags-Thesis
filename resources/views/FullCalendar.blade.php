@@ -1,37 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
+{{-- <!DOCTYPE html>
+<html> --}}
+
+@extends('layouts.app')
+@section('content')
+{{-- <head> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<<<<<<< HEAD
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Include Bootstrap JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --}}
-=======
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-</head>
+{{-- </head> --}}
 <body>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .image-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+    </style>
+
+    {{-- <br> --}}
+
+    <div class="image-container">
+        <img src="{{ asset('images/33.png') }}" alt="Flexible Image">
+    </div> 
+    
 <div class="container">
-    <h1>COACHING SCHEDULE</h1>
+    {{-- <h1>COACHING SCHEDULE</h1> --}}
     <div id='calendar'></div>
 </div>
-<<<<<<< HEAD
-<!-- Coaching Schedule Form using Bootstrap Modal -->
-=======
-
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
 <div class="modal fade" id="coachingModal" tabindex="-1" role="dialog" aria-labelledby="coachingModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -41,10 +56,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-<<<<<<< HEAD
-=======
             
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
             <div class="modal-body">
                 <form id="coachingForm">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -65,11 +77,7 @@
                         <select class="form-control" id="student" name="student">
                             <option value="" disabled selected>Select a Student</option>
                             @foreach($students as $student)
-<<<<<<< HEAD
-                                <option value="{{ $student->id }}">{{ $student->fname }} {{ $student->lname }}</option>
-=======
                             <option value="{{ $student->id }}">{{ $student->fname }} {{ $student->lname }}</option>
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
                             @endforeach
                         </select>
                     </div>
@@ -82,12 +90,6 @@
                             @endforeach
                         </select>
                     </div>
-<<<<<<< HEAD
-
-
-                    <!-- Add other form fields here -->
-=======
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
                 </form>
             </div>
             <div class="modal-footer">
@@ -99,79 +101,6 @@
 </div>
 
 <script>
-<<<<<<< HEAD
-    $(document).ready(function () {
-        var SITEURL = "{{ url('/') }}";
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        var calendar = $('#calendar').fullCalendar({
-            editable: true,
-            events: SITEURL + "/fullcalender",
-            displayEventTime: true,
-            eventRender: function (event, element, view) {
-                var displayTitle = event.title;
-                element.find('.fc-title').html(displayTitle);
-            },
-            selectable: true,
-            selectHelper: true,
-            select: function (start, end, allDay, jsEvent, view) {
-                var clickedDate = start.format('YYYY-MM-DD');
-                openCoachingForm(clickedDate);
-            },
-            eventDrop: function (event, delta, revertFunc) {
-                var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-                var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-                var displayTitle = event.title;
-                $.ajax({
-                    url: SITEURL + '/fullcalenderAjax',
-                    data: {
-                        title: displayTitle,
-                        start: start,
-                        end: end,
-                        id: event.id,
-                        type: 'update'
-                    },
-                    type: "POST",
-                    success: function (response) {
-                        displayMessage("Event Updated Successfully");
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        revertFunc();
-                    }
-                });
-            },
-            eventClick: function (event, jsEvent, view) {
-                var deleteMsg = confirm("Do you really want to delete?");
-                if (deleteMsg) {
-                    $.ajax({
-                        type: "POST",
-                        url: SITEURL + '/fullcalenderAjax',
-                        data: {
-                            id: event.id,
-                            type: 'delete'
-                        },
-                        success: function (response) {
-                            calendar.fullCalendar('removeEvents', event.id);
-                            displayMessage("Event Deleted Successfully");
-                        }
-                    });
-                }
-            }
-        });
-    });
-
-      function openCoachingForm(date) {
-            $('#coachingDate').val(date);
-            $('#coachingModal').modal('show');
-        }
-
-        $('#saveCoaching').click(function () {
-            var SITEURL = "{{ url('/') }}";
-            var formData = $('#coachingForm').serialize();
-=======
 $(document).ready(function () {
     var SITEURL = "{{ url('/') }}";
     $.ajaxSetup({
@@ -260,7 +189,6 @@ $(document).ready(function () {
         var events = $('#calendar').fullCalendar('clientEvents');
         
         if (isTimeSlotAvailable(start, end, events)) {
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
             $.ajax({
                 url: SITEURL + "/fullcalenderAjax?type=add",
                 type: "POST",
@@ -268,27 +196,6 @@ $(document).ready(function () {
                 success: function (data) {
                     displayMessage("Event Created Successfully");
                     $('#coachingModal').modal('hide');
-<<<<<<< HEAD
-                    $('#calendar').fullCalendar('refetchEvents')
-                }
-            });
-        });
-
-        function displayMessage(message) {
-            toastr.success(message, 'Event');
-        }
-</script>
-<script>
-    $(document).on('show.bs.modal', '#coachingModal', function() {
-        var studentDropdown = $('#student');
-        studentDropdown.empty();
-        studentDropdown.append('<option value="" disabled selected>Select a Student</option>');
-        @foreach($students as $student)
-        studentDropdown.append('<option value="{{ $student->id }}">{{ $student->fname }} {{ $student->lname }}</option>');
-        @endforeach
-    });
-</script>
-=======
                     $('#calendar').fullCalendar('refetchEvents');
                 }
             });
@@ -314,6 +221,6 @@ $(document).ready(function () {
             @endforeach
         });
         </script>
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
 </body>
-</html>
+@endsection
+{{-- </html> --}}

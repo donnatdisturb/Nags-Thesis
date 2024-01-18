@@ -26,9 +26,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 style='text-align: center;'>{{ __('About NAGS (Notify, Administer, General Publication and Scheduling)
+                            {{-- <h5 style='text-align: center;'>{{ __('About NAGS (Notify, Administer, General Publication and Scheduling)
                                 ') }}</h5>
-                            <br>
+                            <br> --}}
                             <div class="flex justify-center pt-8 sm:justify-center sm:pt-200">
                                 <img src="{{ asset('images/Banner.png') }}" style="padding:0px; margin:0px" width=100% alt=banner height=100%/>
                             </div>

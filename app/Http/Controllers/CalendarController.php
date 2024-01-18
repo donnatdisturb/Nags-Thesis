@@ -9,26 +9,25 @@ use App\Models\Guidance;
 use App\Models\User;
 use App\Models\Counsel;
 use DB;
-<<<<<<< HEAD
-
-class CallendarController extends Controller
-{
-=======
 use Carbon\Carbon;
+use Validator;
 
-class CallendarController extends Controller
+class CalendarController extends Controller
 {
     protected function isTimeSlotAvailable($start, $end, $events)
     {
         foreach ($events as $event) {
-            if (($start >= $event['start'] && $start < $event['end']) || ($end > $event['start'] && $end <= $event['end'])) {
+            $eventStart = $event['start'];
+            $eventEnd = $event['end'];
+            
+            // Assuming $eventStart and $eventEnd are in the "YYYY-MM-DD HH:MM" format
+            if (($start >= $eventStart && $start < $eventEnd) || ($end > $eventStart && $end <= $eventEnd)) {
                 return false;
             }
         }
-        return true; 
+        return true;
     }
 
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
    /**
 
      * Write code on Method
@@ -38,39 +37,37 @@ class CallendarController extends Controller
      * @return response()
 
      */
-
-     public function index(Request $request)
-     {
-         if ($request->ajax()) {
-            $counselings = Counsel::select('id', 'scheduled_date as start_date', 'start_time', 'end_time', 'student_id')
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $counselings = Counsel::select('id', 'scheduled_date as start_date', 'start_time', 'end_time', 'student_id', 'guidance_id')
             ->with('student:id,fname,lname')
+            ->with('guidance:id,fname,lname')
             ->get();
+            
             $formattedData = [];
-
-             foreach ($counselings as $counseling) {
-                 $startDatetime = $counseling->start_date . ' ' . $counseling->start_time;
-                 $endDatetime = $counseling->start_date . ' ' . $counseling->end_time;
-             
-                 $student = $counseling->student;
-                 $title = $student->fname . ' ' . $student->lname;
-             
-                 $formattedData[] = [
-                     'id' => $counseling->id,
-                     'title' => $title,
-                     'start' => $startDatetime,
-                     'end' => $endDatetime,
-                 ];
-             }
-             
-             return response()->json($formattedData);
+            foreach ($counselings as $counseling) {
+                $startDatetime = $counseling->start_date . ' ' . $counseling->start_time;
+                $endDatetime = $counseling->start_date . ' ' . $counseling->end_time;
+                $student = $counseling->student;
+                $professor = $counseling->guidance;
+                
+                $formattedData[] = [
+                    'id' => $counseling->id,
+                    'title' => $student->fname . ' ' . $student->lname,
+                    'start' => $startDatetime,
+                    'end' => $endDatetime,
+                    'studentName' => $student->fname . ' ' . $student->lname,
+                    'professorName' => $professor->fname . ' ' . $professor->lname,
+                ];
+            }
+            return response()->json($formattedData);
         }
-    
+        
         $students = Student::all();
         $guidance = Guidance::all();
-    
         return view('FullCalendar', compact('students', 'guidance'));
-     }
-     
+    }
 
      /**
  
@@ -84,32 +81,6 @@ class CallendarController extends Controller
  
      public function ajax(Request $request)
      {
-<<<<<<< HEAD
-        // dd($request->all());
-        switch ($request->type) {
-            case 'add':
-                // $event = Counsel::create([
-                //     'scheduled_date' => $request->coachingDate,
-                //     'start_time' => $request->starttime,
-                //     'end_time' => $request->endtime,
-                //     'guidance_id' =>$request->guidance,
-                //     'student_id' => $request->student,
-                //     'Status' => 'PENDING',
-                // ]);
-                $event = DB::table('counsil')->insert([
-                    'scheduled_date' => $request->coachingDate,
-                    'start_time' => $request->starttime,
-                    'end_time' => $request->endtime,
-                    'guidance_id' => $request->guidance,
-                    'student_id' => $request->student,
-                    'Status' => 'PENDING',
-                ]);
-                
-                
-                return response()->json($event);
-                break;
-                
-=======
         switch ($request->type) {
             case 'add':
                 $coachingDate = $request->coachingDate;
@@ -145,7 +116,6 @@ class CallendarController extends Controller
                 }
                 break;
             
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
                 case 'update':
                     $event = Counsel::find($request->id)->update([
                         'title' => $request->title,
@@ -155,17 +125,13 @@ class CallendarController extends Controller
                     return response()->json($event);
                     break;
                 
-                case 'delete':
-                    $event = Counsel::find($request->id)->delete();
-                    return response()->json($event);
-                    break;
-                    default:
+    //             case 'delete':
+    //                 $event = Counsel::find($request->id)->delete();
+    //                 return response()->json($event);
+    //                 break;
+    //                 default:
  
               break;
             }
         }
-<<<<<<< HEAD
-    }
-=======
-    }
->>>>>>> cd8d8b7f4e5381cf677fd4ce968275c83e73b30f
+}

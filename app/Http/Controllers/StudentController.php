@@ -39,7 +39,7 @@ class StudentController extends Controller
         // $students= Student::all();
 
         // return View::make('student.index',compact('students'));
-        $students = Student::with('section','course')->paginate(5);
+        $students = Student::with('section','course')->paginate(10);
 
 
     return View::make('student.index',compact( 'students')) ;

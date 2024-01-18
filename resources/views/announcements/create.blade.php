@@ -18,11 +18,32 @@
             border-radius: 0.25rem;
             transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .image-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 5px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
     </style>
 
-    <br>
-    <img src="{{ asset('images/11.png') }}" width="1090px" style="padding:5px; margin:0px" />
-    <BR>
+    {{-- <br> --}}
+
+    <div class="image-container">
+        <img src="{{ asset('images/11.png') }}" alt="Flexible Image">
+    </div> 
+
     <div class="container">
         <form method="POST" action="{{ route('announcement.store') }}" enctype="multipart/form-data">
             @csrf
